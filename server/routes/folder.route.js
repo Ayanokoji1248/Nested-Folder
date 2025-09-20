@@ -27,6 +27,7 @@ folderRouter.post("/create", async (req, res) => {
 folderRouter.get("/", async (req, res) => {
   try {
     const { parent } = req.query;
+    if (parent === "null") parent = null;
     const folders = await folderModel.find({ parentFolder: parent || null });
     res.json(folders);
   } catch (error) {
